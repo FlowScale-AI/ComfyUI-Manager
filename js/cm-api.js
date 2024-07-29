@@ -35,7 +35,8 @@ async function tryInstallCustomNode(event) {
 		else {
 			await sleep(300);
 			app.ui.dialog.show(`Installing... '${event.detail.target.title}'`);
-
+			
+			print('Installing custom node:', event.detail.target);
 			const response = await api.fetchApi(`/customnode/install`, {
 										method: 'POST',
 										headers: { 'Content-Type': 'application/json' },
@@ -47,6 +48,7 @@ async function tryInstallCustomNode(event) {
 				return false;
 			}
 
+			print('Custom node installation response:', response);
 			if (response.status == 200) {
 				console.log('Custom node installed, sending message to parent:', event.detail.target);
 				window.parent.postMessage({ type: 'customNodeInstalled', data: event.detail.target }, '*');
