@@ -626,6 +626,10 @@ export class ModelManager {
 				break;;
 			}
 
+			if (response.status == 200) {
+				window.parent.postMessage({ type: 'modelInstalled', data: item.originalData }, '*');
+			}
+
 			needRestart = true;
 
 			this.grid.setRowSelected(item, false);
