@@ -48,7 +48,10 @@ async function tryInstallCustomNode(event) {
 			}
 
 			if (response.status == 200) {
+				console.log('Custom node installed, sending message to parent:', event.detail.target);
 				window.parent.postMessage({ type: 'customNodeInstalled', data: event.detail.target }, '*');
+				console.log('Message sent to parent.');
+
 			}
 		}
 
